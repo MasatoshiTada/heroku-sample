@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>トップ画面</title>
+</head>
+<body>
+    <ol>
+        <li th:each="user : ${userList}" th:text="${user.name}">ダミーの名前</li>
+    </ol>
+    <form th:action="@{/logout}" method="post">
+        <button>ログアウト</button>
+    </form>
+</body>
+</html>
