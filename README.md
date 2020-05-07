@@ -80,3 +80,8 @@ Continuous Protection: Off
 Add-on:                postgresql-horizontal-15779
 ```
 
+プッシュすればアプリが起動され、PostgreSQLとの連携ができる。Spring Bootを使っている場合、 `spring.datasource.url` などに値をよろしく代入してくれる。
+
+```bash
+$ git push heroku master
+```
