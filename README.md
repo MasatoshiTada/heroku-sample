@@ -1,4 +1,4 @@
-Spring BootアプリをHerokuで公開するまで（HTTPS・PostgreSQL・Redis使用）
+Spring BootアプリをHerokuで公開するまで（PostgreSQL使用）
 ================================================================
 
 # 普通にアプリを作る
@@ -84,4 +84,30 @@ Add-on:                postgresql-horizontal-15779
 
 ```bash
 $ git push heroku master
+```
+
+# Spring Sessionの追加
+今回はセッションストアとしてPostgreSQLを使う。
+
+pom.xmlに下記を追加。
+
+```xml
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-jdbc</artifactId>
+        </dependency>
+```
+
+application.propertiesに下記を追加。2つ目のプロパティにより、起動時にDBに `spring_session` テーブルが作られる。1つ目のプロパティは無くても大丈夫かも。
+
+```properties
+spring.session.store-type=jdbc
+spring.session.jdbc.initialize-schema=always
+```
+
+プッシュ後、アプリを3インスタンスにスケールする。セッションがサーバーのインメモリではなくPostgreSQLに保存されているので、分散したアプリでもセッションが問題なく使える。
+
+```
+$ git push heroku master
+$ heroku ps:scale web=3
 ```
