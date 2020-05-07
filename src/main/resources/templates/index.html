@@ -9,9 +9,9 @@
         <li th:each="user : ${userList}" th:text="${user.name}">ダミーの名前</li>
     </ol>
     <ul>
-        <li th:text="dataSource.url"></li>
-        <li th:text="dataSource.username"></li>
-        <li th:text="dataSource.password"></li>
+        <li th:text="${dataSource.url}"></li>
+        <li th:text="${dataSource.username}"></li>
+        <li th:text="${dataSource.password}"></li>
     </ul>
     <form th:action="@{/logout}" method="post">
         <button>ログアウト</button>
