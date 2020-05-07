@@ -7,6 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Select("SELECT id, name FROM user")
+    @Select("SELECT id, name FROM users")
     List<User> selectAll();
 }
